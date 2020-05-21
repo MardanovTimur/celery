@@ -757,7 +757,7 @@ class Celery(object):
                     options.setdefault('priority',
                                        parent.request.delivery_info.get('priority'))
 
-        message = amqp.create_task_message(
+        message = amqp.create_task_message_with_protocol(task_type.protocol)(
             task_id, name, args, kwargs, countdown, eta, group_id,
             expires, retries, chord,
             maybe_list(link), maybe_list(link_error),
